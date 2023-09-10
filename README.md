@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://chess.com">
-    <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/SamCopeland/phpe9mLN5.png" height="96">
+    <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/SamCopeland/php2z9LbY.png" height="96">
     <h3 align="center">Chesspy</h3>
   </a>
 </p>
