@@ -1,8 +1,12 @@
 import { formatStatsRating } from "./formatData";
 
+const URL = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`
+  : "http://localhost:3000/api";
+
 // Fetch User Data
 export async function getUserData(username: string): Promise<UserType> {
-  const res = await fetch(`/api/user/${username}`, {
+  const res = await fetch(`${URL}/user/${username}`, {
     cache: "no-cache",
   });
   return res.json();
@@ -17,7 +21,7 @@ export function isUserNotFound(userData: UserType | null) {
 export const fetchStatsData = async (username: string, variant: string) => {
   try {
     const statsResponse = await fetch(
-      `/api/user/${username.toLowerCase()}/stats`,
+      `${URL}/user/${username.toLowerCase()}/stats`,
       {
         cache: "force-cache",
       },
@@ -47,7 +51,7 @@ export const fetchGamesData = async (
     const queryParameters = `${variantParamQuery}${colorParamQuery}`;
 
     const gamesResponse = await fetch(
-      `/api/user/${username.toLowerCase()}/games?${queryParameters}`,
+      `${URL}/user/${username.toLowerCase()}/games?${queryParameters}`,
       {
         cache: "no-cache",
       },
