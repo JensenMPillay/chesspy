@@ -1,8 +1,15 @@
 import { formatStatsRating } from "./formatData";
 
+function getBaseUrlFromENV() {
+  const isDevelopment = process.env.NODE_ENV === "development";
+  const baseUrl = isDevelopment ? "http://127.0.0.1:5000" : "";
+  return baseUrl;
+}
+
 // Fetch User Data
 export async function getUserData(username: string): Promise<UserType> {
-  const res = await fetch(`http://127.0.0.1:5000/api/user/${username}`, {
+  const baseUrl = getBaseUrlFromENV();
+  const res = await fetch(`${baseUrl}/api/user/${username}`, {
     cache: "no-cache",
   });
   return res.json();
@@ -16,8 +23,9 @@ export function isUserNotFound(userData: UserType | null) {
 // Fetch Stats Data
 export const fetchStatsData = async (username: string, variant: string) => {
   try {
+    const baseUrl = getBaseUrlFromENV();
     const statsResponse = await fetch(
-      `http://127.0.0.1:5000/api/user/${username.toLowerCase()}/stats`,
+      `${baseUrl}/api/user/${username.toLowerCase()}/stats`,
       {
         cache: "force-cache",
       },
@@ -39,6 +47,7 @@ export const fetchGamesData = async (
   color: string,
   // status?: string,
 ) => {
+  const baseUrl = getBaseUrlFromENV();
   try {
     const variantParamQuery =
       variant !== "all games" ? `variant=${variant}&` : "";
@@ -47,7 +56,7 @@ export const fetchGamesData = async (
     const queryParameters = `${variantParamQuery}${colorParamQuery}`;
 
     const gamesResponse = await fetch(
-      `http://127.0.0.1:5000/api/user/${username.toLowerCase()}/games?${queryParameters}`,
+      `${baseUrl}/api/user/${username.toLowerCase()}/games?${queryParameters}`,
       {
         cache: "no-cache",
       },
