@@ -11,6 +11,22 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.chesscomfiles.com",
+        port: "",
+        pathname: "/uploads/v1/user/**",
+      },
+      {
+        protocol: "https",
+        hostname: "flagsapi.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
