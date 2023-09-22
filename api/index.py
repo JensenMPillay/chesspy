@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 
-# from models.User import User
-# from models.GameStats import GameStats
+from models.User import User
+from models.GameStats import GameStats
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)

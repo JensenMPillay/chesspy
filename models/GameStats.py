@@ -1,5 +1,5 @@
 from interfaces.GameStatsInterface import GameStatsInterface
-from utils.stats import (
+from utilities.stats import (
     get_games,
     get_games_by_variant,
     get_games_by_status,
