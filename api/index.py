@@ -52,3 +52,7 @@ def games(username):
             filtered_games.append(game)
 
     return jsonify(filtered_games), 200
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
