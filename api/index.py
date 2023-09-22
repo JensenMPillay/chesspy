@@ -1,25 +1,29 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
-from models.User import User
-from models.GameStats import GameStats
+from flask_cors import CORS, cross_origin
+
+# from models.User import User
+# from models.GameStats import GameStats
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)
 
 
 @app.route("/api/user/<username>", methods=["GET"])
+@cross_origin(supports_credentials=True)
 def user(username):
     user = User(username=username).get_profile()
     return jsonify(user), 200
 
 
 @app.route("/api/user/<username>/stats", methods=["GET"])
+@cross_origin(supports_credentials=True)
 def stats(username):
     user = User(username=username).get_ratings()
     return jsonify(user), 200
 
 
 @app.route("/api/user/<username>/games", methods=["GET"])
+@cross_origin(supports_credentials=True)
 def games(username):
     user = User(username=username).get_profile()
     if "code" in user and user["code"] == 404:
@@ -52,6 +56,12 @@ def games(username):
             filtered_games.append(game)
 
     return jsonify(filtered_games), 200
+
+
+@app.route("/api/healthcheck", methods=["GET"])
+@cross_origin(supports_credentials=True)
+def healthcheck():
+    return jsonify("OK"), 200
 
 
 if __name__ == "__main__":
