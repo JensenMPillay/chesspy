@@ -42,7 +42,10 @@ function UserCard({ user }: { user: UserType }): React.JSX.Element {
           </a>
           <ul className="my-1 flex w-full flex-col items-center justify-center text-xs md:my-2 md:flex-row md:flex-wrap md:justify-around md:text-sm lg:my-4 lg:text-base xl:my-6 xl:text-lg">
             {user?.country && (
-              <li className="flex flex-col items-center justify-center">
+              <li
+                key="country"
+                className="flex flex-col items-center justify-center"
+              >
                 <WorldIcon className="h-6 w-6" />
                 <span className="my-2 flex items-center justify-center text-xs md:text-sm lg:text-base">
                   <Image
@@ -55,13 +58,19 @@ function UserCard({ user }: { user: UserType }): React.JSX.Element {
                 </span>
               </li>
             )}
-            <li className="my-2 flex flex-col items-center justify-center md:my-0">
+            <li
+              key="online"
+              className="my-2 flex flex-col items-center justify-center md:my-0"
+            >
               <LastOnlineIcon className="h-6 w-6" />
               <span className="my-2  text-xs md:text-sm lg:text-base">
                 {user?.last_online}
               </span>
             </li>
-            <li className="flex flex-col items-center justify-center">
+            <li
+              key="joined"
+              className="flex flex-col items-center justify-center"
+            >
               <JoinedIcon className="h-6 w-6" />
               <span className="my-2 text-xs md:text-sm lg:text-base">
                 {user?.joined}
