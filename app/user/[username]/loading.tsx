@@ -13,7 +13,10 @@ function Loading() {
 
           <ul className="my-1 flex w-full flex-col items-center justify-center md:my-2 md:flex-row md:flex-wrap md:justify-around lg:my-4 xl:my-6">
             {Array.from({ length: 3 }).map((_, index) => (
-              <li className="flex w-1/3 flex-col items-center justify-center">
+              <li
+                key={index}
+                className="flex w-1/3 flex-col items-center justify-center"
+              >
                 <span className="my-1 w-1/6 scale-100 rounded-md bg-neutral-700/25 p-5" />
                 <span className="my-1 w-1/3 scale-100 rounded-md bg-neutral-700/25 p-5" />
               </li>
@@ -67,11 +70,17 @@ export function StatusBoardLoading() {
       <ul className="flex w-full animate-pulse flex-col items-center justify-between md:flex-row">
         {Array.from({ length: 3 }).map((_, index) => (
           <ul key={index} className="flex w-1/3 flex-col items-center p-2">
-            <li className="flex w-full flex-row items-center justify-center">
+            <li
+              key={index}
+              className="flex w-full flex-row items-center justify-center"
+            >
               <span className="w-1/12 scale-75 rounded bg-neutral-700/25 p-3" />
               <span className="w-2/12 scale-100 rounded-md bg-neutral-700/25 p-3" />
             </li>
-            <li className="flex w-full flex-col items-center md:w-1/2">
+            <li
+              key={index + 1}
+              className="flex w-full flex-col items-center md:w-1/2"
+            >
               {Array.from({ length: 4 }).map((_, index) => (
                 <span
                   className="my-1 w-3/4 rounded-md bg-neutral-700/25 p-2"
