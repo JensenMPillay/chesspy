@@ -48,8 +48,11 @@ export function GamesChartLoading() {
   const positions: string[] = ["start", "center", "end"];
   return (
     <article className="flex w-3/4 animate-pulse flex-row items-center justify-center">
-      {positions.map((position) => (
-        <div className={`flex w-1/3 flex-col items-${position} justify-center`}>
+      {positions.map((position, index) => (
+        <div
+          key={index}
+          className={`flex w-1/3 flex-col items-${position} justify-center`}
+        >
           <span
             className={`flex w-full flex-row items-center justify-${position}`}
           >

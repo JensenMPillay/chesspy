@@ -23,8 +23,8 @@ function StatusList({
       </li>
       <li className="flex w-full flex-col items-center md:w-1/2">
         {tabUpdated.details &&
-          tabUpdated.details.map((detail) => (
-            <div className="flex w-full flex-row items-start" key={idx}>
+          tabUpdated.details.map((detail, index) => (
+            <div className="flex w-full flex-row items-start" key={index}>
               <span className="text-xs font-semibold md:text-sm">
                 {detail.count}%
               </span>
