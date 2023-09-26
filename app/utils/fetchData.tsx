@@ -4,10 +4,17 @@ const URL = process.env.NEXT_PUBLIC_VERCEL_URL
   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api`
   : "http://localhost:3000/api";
 
+const jsonHeaders = () => {
+  const headers = new Headers();
+  headers.append("Content-Type", "application/json");
+  return headers;
+};
+
 // Fetch User Data
 export async function getUserData(username: string): Promise<UserType> {
   const res = await fetch(`${URL}/user/${username}`, {
     cache: "no-cache",
+    headers: jsonHeaders(),
   });
   return res.json();
 }
@@ -24,6 +31,7 @@ export const fetchStatsData = async (username: string, variant: string) => {
       `${URL}/user/${username.toLowerCase()}/stats`,
       {
         cache: "force-cache",
+        headers: jsonHeaders(),
       },
     );
     const statsData = await statsResponse.json();
@@ -57,6 +65,7 @@ export const fetchGamesData = async (
       `${URL}/user/${username.toLowerCase()}/games${queryParameters}`,
       {
         cache: "no-cache",
+        headers: jsonHeaders(),
       },
     );
     return await gamesResponse.json();
