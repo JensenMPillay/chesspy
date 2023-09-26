@@ -7,7 +7,7 @@ from models.GameStats import GameStats
 app = Flask(__name__)
 CORS(
     app,
-    resources={r"/api/*": {"origins": "https://chesspy.vercel.app"}},
+    resources={r"/api/*": {"origins": "*"}},
     supports_credentials=True,
 )
 
