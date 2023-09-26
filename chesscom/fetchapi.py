@@ -1,5 +1,4 @@
 from config.config import get_session_requests
-import time
 
 
 # FUNCTIONS
@@ -53,7 +52,6 @@ def get_list_games_by_months(username):
 
 
 def get_list_games_by_month(url_by_month):
-    time.sleep(1)
     requests = get_session_requests()
     response = requests.get(url_by_month)
     if response.status_code == 200:
