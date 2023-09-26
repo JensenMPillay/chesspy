@@ -5,7 +5,11 @@ from models.User import User
 from models.GameStats import GameStats
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(
+    app,
+    resources={r"/api/*": {"origins": "https://chesspy.vercel.app"}},
+    supports_credentials=True,
+)
 
 
 @app.route("/api/user/<username>", methods=["GET"])
