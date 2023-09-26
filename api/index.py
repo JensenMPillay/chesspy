@@ -8,26 +8,26 @@ app = Flask(__name__)
 CORS(
     app,
     resources={r"/api/*": {"origins": "*"}},
-    supports_credentials=False,
+    supports_credentials=True,
 )
 
 
 @app.route("/api/user/<username>", methods=["GET"])
-@cross_origin(supports_credentials=False)
+@cross_origin(supports_credentials=True)
 def user(username):
     user = User(username=username).get_profile()
     return jsonify(user), 200
 
 
 @app.route("/api/user/<username>/stats", methods=["GET"])
-@cross_origin(supports_credentials=False)
+@cross_origin(supports_credentials=True)
 def stats(username):
     user = User(username=username).get_ratings()
     return jsonify(user), 200
 
 
 @app.route("/api/user/<username>/games", methods=["GET"])
-@cross_origin(supports_credentials=False)
+@cross_origin(supports_credentials=True)
 def games(username):
     user = User(username=username).get_profile()
     if "code" in user and user["code"] == 404:
@@ -63,7 +63,7 @@ def games(username):
 
 
 @app.route("/api/healthcheck", methods=["GET"])
-@cross_origin(supports_credentials=False)
+@cross_origin(supports_credentials=True)
 def healthcheck():
     return jsonify("OK"), 200
 
