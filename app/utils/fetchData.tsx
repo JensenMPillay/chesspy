@@ -48,10 +48,13 @@ export const fetchGamesData = async (
       variant !== "all games" ? `variant=${variant}&` : "";
     const colorParamQuery = color !== "all games" ? `color=${color}&` : "";
     // const statusParamQuery = status ? `status=${status}` : "";
-    const queryParameters = `${variantParamQuery}${colorParamQuery}`;
+    const queryParameters =
+      Boolean(variantParamQuery) || Boolean(colorParamQuery)
+        ? `?${variantParamQuery}${colorParamQuery}`
+        : "";
 
     const gamesResponse = await fetch(
-      `${URL}/user/${username.toLowerCase()}/games?${queryParameters}`,
+      `${URL}/user/${username.toLowerCase()}/games${queryParameters}`,
       {
         cache: "no-cache",
       },
