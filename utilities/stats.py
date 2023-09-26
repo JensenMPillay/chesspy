@@ -21,7 +21,12 @@ def get_games(username):
         for url_by_month in urls_by_month:
             games_by_month = get_list_games_by_month(url_by_month=url_by_month)["games"]
             for game in games_by_month:
-                total_games.append(game)
+                gameData = {
+                    "black": game["black"],
+                    "time_class": game["time_class"],
+                    "white": game["white"],
+                }
+                total_games.append(gameData)
     else:
         print("No Games found.")
     return total_games
