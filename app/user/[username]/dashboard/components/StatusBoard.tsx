@@ -11,10 +11,11 @@ function StatusBoard({
       <ul className="flex w-full flex-col items-center justify-between md:flex-row">
         {tabsData.map((tab, idx) => (
           <StatusList
+            key={tab.index}
             username={username}
             statusGamesData={statusGamesData}
             tab={tab}
-            idx={idx}
+            idx={tab.index}
           />
         ))}
       </ul>

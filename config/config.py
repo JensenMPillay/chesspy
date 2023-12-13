@@ -1,9 +1,10 @@
+from flask import request
 import requests
 
 # CONFIG
-USER_AGENT = {
-    "User-Agent": "username: QueenOfSpachess, email: queenofspachess@protonmail.com"
-}
+# USER_AGENT = {
+#     "User-Agent": "username: QueenOfSpachess, email: queenofspachess@protonmail.com"
+# }
 
 VARIANTS = ["rapid", "blitz", "bullet"]
 
@@ -48,5 +49,11 @@ def set_user_agent_requests(user_agent):
 
 
 def get_session_requests():
-    session_custom = set_user_agent_requests(USER_AGENT)
+    user_agent_param = request.headers.get("User-Agent")
+    if user_agent_param is None:
+        user_agent_param = (
+            "username: QueenOfSpachess, email: queenofspachess@protonmail.com"
+        )
+    user_agent = {"User-Agent": user_agent_param}
+    session_custom = set_user_agent_requests(user_agent)
     return session_custom

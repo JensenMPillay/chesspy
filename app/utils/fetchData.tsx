@@ -49,13 +49,11 @@ export const fetchGamesData = async (
   username: string,
   variant: string,
   color: string,
-  // status?: string,
-) => {
+): Promise<GameType[]> => {
   try {
     const variantParamQuery =
       variant !== "all games" ? `variant=${variant}&` : "";
     const colorParamQuery = color !== "all games" ? `color=${color}&` : "";
-    // const statusParamQuery = status ? `status=${status}` : "";
     const queryParameters =
       Boolean(variantParamQuery) || Boolean(colorParamQuery)
         ? `?${variantParamQuery}${colorParamQuery}`
@@ -68,10 +66,14 @@ export const fetchGamesData = async (
         headers: jsonHeaders(),
       },
     );
-    return await gamesResponse.json();
+
+    if (gamesResponse.status === 500) return [];
+
+    const gamesData: GameType[] = await gamesResponse.json();
+
+    return gamesData;
   } catch (error) {
-    // Handle Error
     if (error instanceof Error) console.error("Error fetching data:", error);
-    return null;
+    return [];
   }
 };
