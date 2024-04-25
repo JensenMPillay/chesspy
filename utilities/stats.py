@@ -17,7 +17,8 @@ def get_games(username):
     total_games = []
     archives = get_list_games_by_months(username=username)
     if archives is not None:
-        urls_by_month = archives["archives"]
+        # urls_by_month = archives["archives"]
+        urls_by_month = archives["archives"][-12:]
         for url_by_month in urls_by_month:
             games_by_month = get_list_games_by_month(url_by_month=url_by_month)["games"]
             for game in games_by_month:
